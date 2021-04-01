@@ -9,9 +9,11 @@ public class PlayerMovement : MonoBehaviour
     private float shrinkFactor = 0.5f;
     private bool isCrouched;
     private float startingSpeed;
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         startingSpeed = speed;
 
         isCrouched = false;
@@ -31,14 +33,15 @@ public class PlayerMovement : MonoBehaviour
             var exit = GameObject.FindWithTag("TeleporterExit");
             Vector3 exitLocation = exit.transform.position;
 
-            exitLocation.y = exitLocation.y + controller.transform.position.y;
+            exitLocation.y = exitLocation.y + player.transform.position.y;
             print("Exit eleport Location: " + exitLocation);
 
-            GameObject.FindWithTag("Player").transform.position = exitLocation;
+           player.transform.position = exitLocation;
 
             // transform.position = exitLocation;
 
-            print("Player's teleported" + transform.position);
+            print("name " + player.name);
+            print("Player's teleported" + player.transform.position);
             print("Player's teleported" + GameObject.FindWithTag("Player").transform.position);
         }
     }
@@ -72,7 +75,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
-        print("Player's position" + transform.position);
 
     }
 
