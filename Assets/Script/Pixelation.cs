@@ -11,7 +11,7 @@ public class Pixelation : MonoBehaviour
         int realRatio = Mathf.RoundToInt(Screen.width / Screen.height);
         renderTexture.width = NearestSuperiorPowerOf2(Mathf.RoundToInt(renderTexture.width * realRatio));
 
-        Debug.Log("(Pixelation)(Start)renderTexture.width: " + renderTexture.width);
+        // Debug.Log("(Pixelation)(Start)renderTexture.width: " + renderTexture.width);
 
     }
     
