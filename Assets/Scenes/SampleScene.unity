@@ -1955,6 +1955,7 @@ GameObject:
   - component: {fileID: 926163662}
   - component: {fileID: 926163661}
   - component: {fileID: 926163660}
+  - component: {fileID: 926163664}
   m_Layer: 0
   m_Name: LightCubeTunnelCollider
   m_TagString: TeleporterEntrance
@@ -2036,6 +2037,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &926163664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926163659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1930300e77b3b4eb5ab6f585381ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exit: {fileID: 1852212377}
 --- !u!1 &944451395
 GameObject:
   m_ObjectHideFlags: 0
@@ -19499,7 +19513,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-35172
+  m_Name: pb_Mesh15764
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20215,7 +20229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852212377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19, y: 0, z: 20}
+  m_LocalPosition: {x: 17, y: 1, z: 17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -29857,6 +29871,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.77999985
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703646876080540453, guid: 1218a885134cef14ea51b6c2e06bc649,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7703646876080540454, guid: 1218a885134cef14ea51b6c2e06bc649,
         type: 3}

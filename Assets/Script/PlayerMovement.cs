@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouched;
     private float startingSpeed;
     private GameObject player;
-
     private bool teleport = false;
 
     void Start()
@@ -28,57 +27,54 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.tag == "TeleporterEntrance")
-        {
-            teleport = true;
-        }
-        else
-        {
-            speed = startingSpeed * 3;
-        }
+        teleport = true;
     }
-    
+
+
     void Update()
     {
-        if (teleport)
-        {
-            teleport = false;
 
-            var exit = GameObject.FindWithTag("TeleporterExit");
-            Vector3 exitLocation = exit.transform.position;
-
-            exitLocation.y = exitLocation.y + player.transform.position.y;
-
-            player.transform.position = exitLocation;
-            print("teleport;  " + "exit Location: "  + exitLocation + "\n Player Position: " + player.transform.position);
-            return;
-        }
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         bool crouch = Input.GetKeyDown("left ctrl");
         Vector3 scale = transform.localScale;
 
-        //if (crouch)
-        //{
-        //    if (!isCrouched)
-        //    {
-        //        print("isCrouched " + isCrouched);
-        //        isCrouched = true;
-        //        transform.localScale = new Vector3(0.0f, scale.y * shrinkFactor, 0.0f);
-        //    }
-        //    else
-        //    {
-        //        print("isCrouched " + isCrouched);
-        //        isCrouched = false;
-        //        transform.localScale = new Vector3(0.0f, scale.y / shrinkFactor, 0.0f);
-        //    }
-        //}
+        if (crouch)
+        {
+            if (!isCrouched)
+            {
+                print("isCrouched " + isCrouched);
+                isCrouched = true;
+                transform.localScale = new Vector3(0.0f, scale.y * shrinkFactor, 0.0f);
+            }
+            else
+            {
+                print("isCrouched " + isCrouched);
+                isCrouched = false;
+                transform.localScale = new Vector3(0.0f, scale.y / shrinkFactor, 0.0f);
+            }
+        }
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * Time.deltaTime);
+        if (teleport)
+        {
+
+            teleport = false;
+            var exit = GameObject.FindWithTag("TeleporterExit");
+            Vector3 exitLocation = exit.transform.position;
+
+            exitLocation.y = exitLocation.y + player.transform.position.y;
+
+            player.transform.position = exitLocation;
+            Debug.Log("teleport;  " + "exit Location: " + exitLocation + "\n Player Position: " + player.transform.position);
+            return;
+        }
+        else  
+        {
+            controller.Move(move * speed * Time.deltaTime);
+        }
 
 
     }
