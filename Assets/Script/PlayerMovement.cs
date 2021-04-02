@@ -28,10 +28,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        speed = startingSpeed * 3;
+
         if (other.tag == "TeleporterEntrance")
         {
             teleport = true;
+        }
+        else
+        {
+            speed = startingSpeed * 3;
         }
     }
     
@@ -47,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
             exitLocation.y = exitLocation.y + player.transform.position.y;
 
             player.transform.position = exitLocation;
+            print("teleport;  " + "exit Location: "  + exitLocation + "\n Player Position: " + player.transform.position);
             return;
         }
 
@@ -55,24 +60,26 @@ public class PlayerMovement : MonoBehaviour
         bool crouch = Input.GetKeyDown("left ctrl");
         Vector3 scale = transform.localScale;
 
-        if (crouch)
-        {
-            if (!isCrouched)
-            {
-                print("isCrouched " + isCrouched);
-                isCrouched = true;
-                transform.localScale = new Vector3(0.0f, scale.y * shrinkFactor, 0.0f);
-            }
-            else
-            {
-                print("isCrouched " + isCrouched);
-                isCrouched = false;
-                transform.localScale = new Vector3(0.0f, scale.y / shrinkFactor, 0.0f);
-            }
-        }
+        //if (crouch)
+        //{
+        //    if (!isCrouched)
+        //    {
+        //        print("isCrouched " + isCrouched);
+        //        isCrouched = true;
+        //        transform.localScale = new Vector3(0.0f, scale.y * shrinkFactor, 0.0f);
+        //    }
+        //    else
+        //    {
+        //        print("isCrouched " + isCrouched);
+        //        isCrouched = false;
+        //        transform.localScale = new Vector3(0.0f, scale.y / shrinkFactor, 0.0f);
+        //    }
+        //}
 
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
+
+
     }
 }

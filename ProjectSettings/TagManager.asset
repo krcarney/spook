@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TeleporterEntrance
   - TeleporterExit
+  - Tunnel
   layers:
   - Default
   - TransparentFX
