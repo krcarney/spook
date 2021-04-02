@@ -10,7 +10,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouched;
     private float startingSpeed;
     private GameObject player;
-    // Start is called before the first frame update
+
+    private bool teleport = false;
+
     void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -29,26 +31,25 @@ public class PlayerMovement : MonoBehaviour
         speed = startingSpeed * 3;
         if (other.tag == "TeleporterEntrance")
         {
-            print("teleport");
+            teleport = true;
+        }
+    }
+    
+    void Update()
+    {
+        if (teleport)
+        {
+            teleport = false;
+
             var exit = GameObject.FindWithTag("TeleporterExit");
             Vector3 exitLocation = exit.transform.position;
 
             exitLocation.y = exitLocation.y + player.transform.position.y;
-            print("Exit eleport Location: " + exitLocation);
 
-           player.transform.position = exitLocation;
-
-            // transform.position = exitLocation;
-
-            print("name " + player.name);
-            print("Player's teleported" + player.transform.position);
-            print("Player's teleported" + GameObject.FindWithTag("Player").transform.position);
+            player.transform.position = exitLocation;
+            return;
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         bool crouch = Input.GetKeyDown("left ctrl");
@@ -68,15 +69,10 @@ public class PlayerMovement : MonoBehaviour
                 isCrouched = false;
                 transform.localScale = new Vector3(0.0f, scale.y / shrinkFactor, 0.0f);
             }
-
-            
         }
 
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
-
     }
-
-
 }
