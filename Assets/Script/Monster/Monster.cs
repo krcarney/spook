@@ -12,6 +12,8 @@ public class Monster : MonoBehaviour
         player = FindObjectOfType<vp_FPController>();
 
         FindObjectOfType<NavMeshSurface>().BuildNavMesh();
+
+        GetComponent<Animator>().Play("DS_onehand_walk");
     }
 
     private void Update()
