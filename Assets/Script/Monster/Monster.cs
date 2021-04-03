@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class Monster : MonoBehaviour
 {
-    private PlayerMovement player;
+    private vp_FPController player;
 
     private void Start()
     {
-        player = FindObjectOfType<PlayerMovement>();
+        player = FindObjectOfType<vp_FPController>();
 
         FindObjectOfType<NavMeshSurface>().BuildNavMesh();
     }
